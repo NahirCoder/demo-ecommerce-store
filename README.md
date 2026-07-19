@@ -1,1 +1,0 @@
-# demo-ecommerce-store
