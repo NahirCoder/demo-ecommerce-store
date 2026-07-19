@@ -136,6 +136,12 @@ async function loadCategory() {
 
 
 
+            <button class="add-to-cart">
+
+            🛒 Add to Cart
+
+           </button>
+
             <button class="product-whatsapp">
 
             📱 Ask about this product on WhatsApp
@@ -147,6 +153,40 @@ async function loadCategory() {
 
 
 
+            card.querySelector(".add-to-cart").onclick = () => {
+
+                let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+                const existing = cart.find(item => item.id === product.id);
+            
+                if (existing) {
+            
+                    existing.quantity++;
+            
+                } else {
+            
+                    cart.push({
+            
+                        id: product.id,
+            
+                        name: product.name,
+            
+                        price: product.price,
+            
+                        image: product.product_images?.[0]?.image_url || "",
+            
+                        quantity: 1
+            
+                    });
+            
+                }
+            
+                localStorage.setItem("cart", JSON.stringify(cart));
+            
+                alert("Product added to cart!");
+            
+            };
+            
             card.querySelector(".product-whatsapp")
             .onclick = async () => {
 
